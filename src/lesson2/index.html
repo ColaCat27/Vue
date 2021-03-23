@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div id="app">
+        <h2 class="title">
+            План по изучению Vue.js
+        </h2>
+        <div class="content">
+            <div class="content-text">
+                {{text[lastElem]}}
+            </div>
+        </div>
+        <ul class="list">
+            <li class="list-item" v-for="(path, index) in paths">
+                <span :class="{
+                    round: true,
+                    'round-active': index <= lastElem ? true : false
+                }"
+                @click="changeValue(index, $event)"
+                >{{index + 1}}</span>
+                <span class="text">{{path}}</span>
+            </li>
+        </ul>
+        <div class="block">
+            <button :class="{
+                button: true,
+                'button-disabled': lastElem === 0 ? true : false
+            }" @click="toggleLine($event)">Назад</button>
+            <button :class="{
+                button: true,
+                'button-disabled': lastElem === paths.length - 1 ? true : false
+            }" @click="toggleLine($event)">Вперед</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
+</body>
+</html>
