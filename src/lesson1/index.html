@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <div class="container pt-5" id="app">
+        <div class="card">
+            <h1 :style="{
+                color: value.length < 5 ? 'darkred' : 'darkblue',
+                fontSize: value.length > 5 ? '45px' : '35px'
+            }">{{title}}</h1>
+            <div class="form-control">
+                <input type="text" 
+                :placeholder="placeholder" 
+                v-model="value"
+                @keypress.enter="addNote"
+                >
+            </div>
+            <button class="btn" @click="addNote">
+                Добавить
+            </button>
+            <hr>
+            <ul class="list" v-if="notes.length != 0">
+                <li class="list-item" v-for="(note, i) in notes">
+                    <span :class="note.length > 5 ? 'primary' : 'bold'">{{note.toUpperCase()}}</span>
+                    <button class="btn danger" @click="deleteNote(i)">Удалить</button>
+                </li>
+                <hr>
+                <li><strong>Общее количество: {{ notes.length }}</strong></li>
+            </ul>
+            <div v-else>Добавьте свою первую заметку</div>
+        </div>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
+</body>
+</html>
